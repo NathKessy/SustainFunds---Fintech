@@ -3,25 +3,27 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>SustainFunds</title>
-	<meta charset="UTF-8">
-	<meta name="description" content="loans HTML Template">
-	<meta name="keywords" content="loans, html">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="img/favicon.ico" rel="shortcut icon"/>
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="css/owl.carousel.min.css"/>
-	<link rel="stylesheet" href="css/flaticon.css"/>
-	<link rel="stylesheet" href="css/slicknav.min.css"/>
-	<link rel="stylesheet" href="css/style.css"/>
+<title>SustainFunds</title>
+<meta charset="UTF-8">
+<meta name="description" content="loans HTML Template">
+<meta name="keywords" content="loans, html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="img/favicon.ico" rel="shortcut icon" />
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/font-awesome.min.css" />
+<link rel="stylesheet" href="css/owl.carousel.min.css" />
+<link rel="stylesheet" href="css/flaticon.css" />
+<link rel="stylesheet" href="css/slicknav.min.css" />
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
 	<header class="header-section">
-		<a href="index.html" class="site-logo"> 
-			<img src="img/logo.sustainfunds.png" alt="Logo Banco">
+		<a href="index.html" class="site-logo"> <img
+			src="img/logo.sustainfunds.png" alt="Logo Banco">
 		</a>
 		<nav class="header-nav">
 			<ul class="main-menu">
@@ -45,23 +47,35 @@
 		</nav>
 	</header>
 
-	<div class="container">
-		<div class="row d-flex justify-content-center">
-			<div class="col-md-6" style="top:170px">
-				<form class="hero-form" action="usuario" method="post">
-					<div class="hs-text">
-						<h2>Login</h2>
-					</div>
-					<label for="email">Email:</label> 
+	<section class="hero-section"  style="background-color: #74757b">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7">
+					<form class="hero-form" action="login" method="post">
+						<div class="hs-text">
+							<h2>Login</h2>
+						</div>
 						<input type="email"	placeholder="E-mail" id="email" name="email" required> <br>
-					<label for="senha">Senha:</label> 
 						<input type="password" placeholder="Senha" id="senha" name="senha" required> <br>
-						<input type="submit" class="site-btn" value="Conectar"> 
-						<a class=trocaSenha href="#">Esqueci minha senha!</a>
-				</form>
+						<div class="d-flex flex-row bd-highlight">
+							<button class="site-btn d-flex justify-content-center">Logar</button>						
+						</div>
+						<div class="d-flex flex-row bd-highlight">
+							<a class="d-flex justify-content-between" href="#">Crie sua conta!</a>					
+							<a class="d-flex justify-content-between" href="#">Esqueci minha senha!</a>	
+						</div>
+					</form>
+				</div>
+				<div class="col-md-5">
+					<img src="img/logo.sustainfunds.png" alt="Logo Banco">
+				</div>
 			</div>
 		</div>
-	</div>
-
+		<div class="hero-slider owl-carousel">
+			<div class="hs-item set-bg" data-setbg="img/hero-slider/3.jpg"></div>
+			<div class="hs-item set-bg" data-setbg="img/hero-slider/2.jpg"></div>
+			<div class="hs-item set-bg" data-setbg="img/hero-slider/1.jpg"></div>
+		</div>
+	</section>
 </body>
 </html>
