@@ -2,9 +2,6 @@ package br.com.fiap.fintech.sf.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,18 +20,19 @@ public class BuscaInvestimentoServlet extends HttpServlet {
 		super();
 	}
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("investimentos").forward(request, response);
+	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
 			buscarInvestimentoPorIdOuNome(request, response);
 		} catch (ServletException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -54,23 +52,11 @@ public class BuscaInvestimentoServlet extends HttpServlet {
 			if (investimento == null) {				
 				request.setAttribute("naoEncontrado", "Não localizado registro no banco");
 			} else {
-				Date dataInicio = asDate(investimento.getDataInicio());
-				Date dataResgate = asDate(investimento.getDataResgate());
-				Date dataRegistro = asDate(investimento.getDataRegistro());
-
-				request.setAttribute("dataInicio", dataInicio);
-				request.setAttribute("dataResgate", dataResgate);
-				request.setAttribute("dataRegistro", dataRegistro);
 				request.setAttribute("investimento", investimento);
 			}
 		}
 
-		request.getRequestDispatcher("tela-investimentos-teste.jsp").forward(request, response);
+		request.getRequestDispatcher("investimentos").forward(request, response);
 
 	}
-	
-	public Date asDate(LocalDate localDate) {
-	    return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-	  }
-
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -28,13 +28,37 @@
 
 			<input type="text" id="id" name="id" placeholder="id"> <input
 				type="text" id="nome" name="nome" placeholder="nome">
-			<button class="d-flex justify-content-center">Buscar</button>	
+			<button class="d-flex justify-content-center">Buscar</button>
 
 		</form>
 
 		<c:if test="${not empty investimento }">
 			<br>
-			${investimento.id } | ${investimento.descricaoInvestimento } | ${investimento.status } | <fmt:formatDate value="${dataInicio}" pattern="dd/MM/yyyy" /> | <fmt:formatDate value="${dataResgate}" pattern="dd/MM/yyyy" /> | <fmt:formatDate value="${dataRegistro}" pattern="dd/MM/yyyy" />
+			<table border="1">
+				<tr>
+					<th>ID</th>
+					<th>Tipo Investimento</th>
+					<th>Valor Investido</th>
+					<th>Data Inicio</th>
+					<th>Data Resgate</th>
+					<th>Nome Investimento</th>
+					<th>Status</th>
+					<th>Data Resgistro</th>
+					<th></th>
+				</tr>
+				<tr>
+					<td>${investimento.id }</td>
+					<td>${investimento.tipoInvestimento }</td>
+					<td><fmt:formatNumber value="${investimento.valorInvestido}"
+							type="currency" /></td>
+					<td>${investimento.dataInicio}</td>
+					<td>${investimento.dataResgate}</td>
+					<td>${investimento.descricaoInvestimento}</td>
+					<td>${investimento.status}</td>
+					<td>${investimento.dataRegistro}</td>
+					<td><a href="InvestimentoEditar?id=${investimento.id}">Editar</a></td>
+				</tr>
+			</table>
 		</c:if>
 		<c:if test="${not empty erro }">
 			<br>
@@ -47,5 +71,40 @@
 
 	</div>
 
+	<br>
+	
+	 <a href="#" class="create btn btn-dark">Adicionar novo Investimento</a>
+	 <br>
+
+	<div>
+		<table border="1">
+			<tr>
+				<th>ID</th>
+				<th>Tipo Investimento</th>
+				<th>Valor Investido</th>
+				<th>Data Inicio</th>
+				<th>Data Resgate</th>
+				<th>Nome Investimento</th>
+				<th>Status</th>
+				<th>Data Resgistro</th>
+				<th></th>
+			</tr>
+
+			<c:forEach items="${investimentoLista}" var="investimento">
+				<tr>
+					<td>${investimento.id }</td>
+					<td>${investimento.tipoInvestimento }</td>
+					<td><fmt:formatNumber value="${investimento.valorInvestido}"
+							type="currency" /></td>
+					<td>${investimento.dataInicio}</td>
+					<td>${investimento.dataResgate}</td>
+					<td>${investimento.descricaoInvestimento}</td>
+					<td>${investimento.status}</td>
+					<td>${investimento.dataRegistro}</td>
+					<td><a href="InvestimentoEditar?id=${investimento.id}">Editar</a></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
 </body>
 </html>
