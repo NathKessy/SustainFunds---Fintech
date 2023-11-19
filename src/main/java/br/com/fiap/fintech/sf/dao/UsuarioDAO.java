@@ -116,6 +116,47 @@ public class UsuarioDAO {
 
 		return usuario;
 	}
+	
+	public Usuario validarUsuario(String emailAcesso, String senhaAcesso) throws SQLException {
+		PreparedStatement stmt = null;
+		Connection conexao = null;
+		ResultSet rs = null;
+
+		EmpresaDAO empresaDao = new EmpresaDAO();
+		Usuario usuario = null;
+
+		try {
+			conexao = Conexao.abrirConexao();
+			String sql = "select * from t_usuario where email = ? and senha = ?";
+			stmt = conexao.prepareStatement(sql);
+			stmt.setString(1, emailAcesso);
+			stmt.setString(2, senhaAcesso);
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				int id = rs.getInt("ID_USUARIO");
+				int idEmpresa = rs.getInt("T_EMPRESA_ID_EMPRESA");
+				String login = rs.getString("LOGIN_EMPRESA");
+				String email = rs.getString("EMAIL");
+				String senha = rs.getString("SENHA");
+				
+				Empresa empresa = empresaDao.getById(idEmpresa);
+				
+				usuario = new Usuario(id, empresa, login, email, senha);
+			}
+
+		} catch (SQLException e) {
+			System.out.println();
+			e.printStackTrace();
+		} finally {
+			rs.close();
+			stmt.close();
+			conexao.close();
+		}
+
+		return usuario;
+	}
+
 
 	public void delete(int id) throws SQLException {
 		PreparedStatement stmt = null;

@@ -101,7 +101,7 @@
 					<td>${investimento.descricaoInvestimento}</td>
 					<td>${investimento.status}</td>
 					<td>${investimento.dataRegistro}</td>
-					<td><a href="InvestimentoEditar?id=${investimento.id}">Editar</a></td>
+					<td><a href="editar-investimento?id=${investimento.id}">Editar</a></td>
 				</tr>
 			</c:forEach>
 		</table>

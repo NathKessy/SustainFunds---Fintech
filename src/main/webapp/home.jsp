@@ -24,7 +24,7 @@
 <body>
 
 	<h2>Usuário logado com sucesso!!</h2>
-	<h3>E-mail: ${email }, senha: ${senha }</h3>
+	<h3>E-mail: ${usuarioLogado.email }, senha: ${usuarioLogado.senha }</h3>
 	
 	<br>
 	
