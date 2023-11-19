@@ -71,6 +71,85 @@ ol {
 	margin: 0;
 }
 
+/* pagina de pesquisa ações */
+
+.table-responsive {
+	display: inline-table;
+}
+
+.container-table p {
+	font-size: 16px;
+}
+
+
+.table-colored th {
+	white-space: nowrap;
+}
+
+.form-and-table-container {
+	background-color: #22242b;
+}
+
+.btn-container {
+    padding-bottom: 20px;
+}
+
+
+.form-and-table-container {
+	border: 2px solid #22242b;
+	border-radius: 12px; 
+	margin-top: 20px;
+}
+
+.texto-cadastro p {
+	color: black;
+	font-size: medium;
+}
+
+.formulario-acao h3{
+	color: white;
+    padding-bottom: 10px;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.formulario-acao label {
+	color: white;
+	font-size: 16px;
+}
+
+.formulario-acao {
+    position: relative;
+    z-index: 2; /* Defina um valor maior do que o z-index do overlay */
+    max-width: 800px; /* Ajuste o valor conforme necessário */
+    width: 100%;
+    margin: 0 auto; /* Centraliza o formulário na tela */
+}
+
+
+
+
+
+
+
+
+/* Adicione este trecho para listras em linhas ímpares */
+#bankTable tbody tr:nth-child(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Adicione este trecho para tornar a tabela responsiva */
+@media (max-width: 767px) {
+    #bankTable {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+}
+
 
 .section-title {
 	text-align: center;
@@ -411,24 +490,34 @@ ol {
 
 
 .header-section {
-	position: absolute;
+	position: inherit;
 	width: 100%;
 	left: 0;
 	top: 0;
 	padding-left: 53px;
 	background: rgba(0, 0, 0, 0.7);
-	z-index: 999;
+	z-index: 999;	
 }
 
 .header-nav {
 	text-align: right;
-	padding: 20px;
+	padding: 10px;
 }
 
-.site-logo {
+.site-logo img {
 	float: left;
-	width: 150px;
-	display: inline-block;
+    width: 120px;
+    max-height: 120px;
+	padding-top: 22px;
+}
+
+.img-fluid img{
+	width: 220px;
+	max-height: 150px;
+}
+
+.forms-login select {
+	padding-top: 100px;
 }
 
 .main-menu {
@@ -614,8 +703,105 @@ Hero section
 
 .hero-form {
 	background: #22242b;
-	padding: 63px 50px 73px;
+	padding: 20px;
+	border-radius: 15px;
 }
+
+.hero-form h2 {
+	color: white;
+	padding-bottom: 10px;
+	font-size: 24px; 
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.hero-form input {
+	border-radius: 10px;
+	padding: 10px;
+	background-color: #ecf0f1;
+	margin-bottom: 10px;
+}
+
+.hero-form p {
+	color: #ecf0f1;
+}
+
+.hero-form button {
+	border-radius: 35px;
+	height: 60px;
+	padding: 10px;
+	background-color: #f43f00;
+	color: #ecf0f1;
+	display: block;
+	margin: 0 auto;
+	
+}
+
+.site-btn {
+    border-radius: 35px;
+    height: 50px;
+    padding: 10px;
+    background-color: #f43f00;
+    color: #ecf0f1;
+    display: block;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+}
+
+.site-btn:hover {
+    background-color: #ff7b5a;
+}
+
+
+.botao-acao input {
+    border-radius: 35px;
+    height: 50px;
+    padding: 10px;
+    background-color: #f43f00;
+    color: #ecf0f1;
+    display: block;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+}
+
+.botao-acao:hover input{
+    background-color: #ff7b5a;
+}
+
+.linha {
+	height:2px;
+	margin:60px 0 50px 0;
+	background:#f43f00;
+}
+
+.hero-section-bg {
+	position: relative;
+    background-image: url('../img/fundo1.jpg'); /* Replace 'path/to/your/image.jpg' with the actual path to your image file */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff; /* Set text color to white or any color that contrasts well with your background image */
+    padding: 20px; /* Add padding to ensure content is visible and spaced properly */
+}
+
+.overlay-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Cor do overlay (preto com 50% de opacidade) */
+    z-index: 1; /* Coloca o overlay acima da imagem de fundo */
+}
+
+/* @media (min-width: 769px) {
+    .hero-form {
+        width: 100%;
+        margin: auto; /* Centralizar o formulário na tela */
+    /* }
+} */
 
 .hero-form input {
 	width: 100%;
@@ -629,7 +815,7 @@ Hero section
 }
 
 .hero-form p {
-	font-size: 11px;
+	font-size: 13px;
 	font-style: italic;
 	margin-bottom: 25px;
 }
@@ -798,45 +984,54 @@ Help section
 	align-content: center;
 }
 
-.footer-widget {
-	margin-bottom: 50px;
+.footer-widget ul li a:hover {
+    color: #f43f00;
+}
+
+/* Estilo do footer */
+.footer-section {
+    background-color: #333;
+	align-items: center;
 }
 
 .footer-widget h2 {
-	font-size: 18px;
-	font-weight: 700;
-	margin-bottom: 30px;
-	color: #fff;
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 20px;
 }
 
 .footer-widget ul {
-	list-style: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-widget ul li {
+    margin-bottom: 10px;
 }
 
 .footer-widget ul li a {
-	display: inline-block;
-	font-size: 14px;
-	color: #ffffff;
-	margin-bottom: 15px;
+    color: #ddd;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-widget ul li a:hover {
+    color: #f43f00;
 }
 
 .copyright {
-	color: #74757b;
-	font-size: 14px;
-	padding-bottom: 20px;
+    color: #ddd;
+    font-size: 14px;
+    margin-top: 20px;
+	text-align: center;
 }
 
-.copyright i {
-	color: #f43f00;
+.fa-heart-o {
+    color: #f43f00;
 }
 
-.copyright a {
-	color: #74757b;
-}
-
-.copyright a:hover {
-	color: #f43f00;
-}
 
 
 .page-top-section {
