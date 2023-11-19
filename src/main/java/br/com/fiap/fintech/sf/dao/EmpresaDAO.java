@@ -133,5 +133,48 @@ public class EmpresaDAO {
 
 		return empresa;
 	}
+	
+	public Empresa buscarUltimoRegistro() throws SQLException {
+		PreparedStatement stmt = null;
+		Connection conexao = null;
+		ResultSet rs = null;
+		
+		Empresa empresa = null;
+		
+		EnderecoDAO enderecoDao = new EnderecoDAO();
+		
+		try {
+			conexao = Conexao.abrirConexao();
+			String sql = "SELECT * FROM T_EMPRESA WHERE ROWNUM <= 1 ORDER BY ID_EMPRESA DESC";
+			stmt = conexao.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				int id = rs.getInt("ID_EMPRESA"); 
+				String razaoSocial = rs.getString("RAZAO_SOCIAL");
+				String nomeFantasia = rs.getString("NOME_FANTASIA");
+				String cnpj = rs.getString("CNPJ");
+				Double capital_empresa = rs.getDouble("CAPITAL_EMP");
+				String cep = rs.getString("CEP");
+				String telefone = rs.getString("TELEFONE");
+				String email = rs.getString("EMAIL");
+				int idEndereco = rs.getInt("ENDERECO");
+				Double faturamento = rs.getDouble("FATURAMENTO");
+				
+				Endereco endereco = enderecoDao.getById(idEndereco);
+				empresa = new Empresa(id, razaoSocial, nomeFantasia, cnpj, capital_empresa, cep, telefone, email, endereco, faturamento);
+			}
+
+		} catch (SQLException e) {
+			System.err.println("Erro ao listar usuários ao banco de dados!");
+			e.printStackTrace();
+		} finally {
+			rs.close();
+			stmt.close();
+			conexao.close();
+		}
+
+		return empresa;
+	}
 		
 }

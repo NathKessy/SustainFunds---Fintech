@@ -34,7 +34,7 @@ public class EnderecoDAO {
 			
 			stmt.executeUpdate();
 			
-			System.out.println("INFO: Endereço " + endereco.getLogradouro() + " cadastrado!!");
+			System.out.println("INFO: Endereço: " + endereco.getLogradouro() + ", " + endereco.getNumero() + " cadastrado!!");
 			
 		} catch (SQLException e) {
 			System.err.println("Erro ao cadastrar um novo endereço no banco de dados!");
@@ -104,6 +104,50 @@ public class EnderecoDAO {
 			String sql = "select * from t_endereco where id_endereco = ?";
 			stmt = conexao.prepareStatement(sql);
 			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				int identifier = rs.getInt("ID_ENDERECO");
+				int idEstado = rs.getInt("T_ESTADO_ID_ESTADO");
+				int idCidade = rs.getInt("T_CIDADE_ID_CIDADE");
+				int idPais = rs.getInt("T_PAIS_ID_PAIS");
+				String logradouro = rs.getString("LOGRADOURO");
+				String bairro = rs.getString("BAIRRO");
+				String numero = rs.getString("NUMERO");
+				String cep = rs.getString("CEP");
+				
+				Estado estado = dao.getEstadoById(idEstado);
+				Cidade cidade = dao.getCidadeById(idCidade);
+				Pais pais = dao.getPaisById(idPais);
+				
+				endereco = new Endereco(identifier, estado, cidade, pais, logradouro, bairro, numero, cep );
+			}
+			
+		} catch (SQLException e) {
+			System.out.println();
+			e.printStackTrace();
+		} finally {
+			rs.close();
+			stmt.close();
+			conexao.close();
+		}
+		
+		return endereco;
+	}
+	
+	public Endereco buscarUltimoRegistro() throws SQLException {
+		PreparedStatement stmt = null; 
+		Connection conexao = null;
+		ResultSet rs = null; 
+
+		Endereco endereco = null;
+		
+		EnderecoComplementosDAO dao = new EnderecoComplementosDAO();
+		
+		try {
+			conexao = Conexao.abrirConexao();
+			String sql = "select * from t_endereco where ROWNUM <= 1 order by t_endereco.id_endereco desc";
+			stmt = conexao.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			
 			if (rs.next()) {

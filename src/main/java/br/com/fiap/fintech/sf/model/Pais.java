@@ -20,6 +20,12 @@ public class Pais {
 		super();
 		this.id = id;
 	}
+	
+	public Pais(int id, String nomePais) {
+		super();
+		this.id = id;
+		this.nomePais = nomePais;
+	}
 
 	public int getId() {
 		return id;

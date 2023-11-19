@@ -92,10 +92,10 @@ CREATE TABLE t_empresa (
     id_empresa             INTEGER NOT NULL,
     razao_social           VARCHAR2(30) NOT NULL,
     nome_fantasia          VARCHAR2(50) NOT NULL,
-    cnpj                   VARCHAR2(14) NOT NULL,
-    capital_emp            NUMBER(38, 2) NOT NULL,
+    cnpj                   VARCHAR2(30) NOT NULL,
+    capital_emp            NUMBER(38, 2),
     cep                    VARCHAR2(8) NOT NULL,
-    telefone               VARCHAR2(9) NOT NULL,
+    telefone               VARCHAR2(20) NOT NULL,
     email                  VARCHAR2(50) NOT NULL,
     endereco               INTEGER NULL,
     faturamento            NUMBER(38, 2) NOT NULL
@@ -110,7 +110,7 @@ CREATE TABLE t_endereco (
     t_pais_id_pais     INTEGER NOT NULL,
     logradouro         VARCHAR2(50) NOT NULL,
     bairro             VARCHAR2(30) NOT NULL,
-    numero             VARCHAR2(10) NOT NULL,
+    numero             VARCHAR2(30) NOT NULL,
     cep                VARCHAR2(10) NOT NULL
 );
 

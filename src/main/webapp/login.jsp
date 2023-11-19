@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -60,8 +62,16 @@
 						<div class="d-flex flex-row bd-highlight">
 							<button class="site-btn d-flex justify-content-center">Logar</button>						
 						</div>
+						<c:if test="${not empty msg }">
+							<br>
+							<div class="alert alert-secondary">${msg }</div>
+						</c:if>
+						<c:if test="${not empty erro }">
+							<br>
+							<div class="alert alert-danger">${erro }</div>
+						</c:if>
 						<div class="d-flex flex-row bd-highlight">
-							<a class="d-flex justify-content-between" href="#">Crie sua conta!</a>					
+							<a class="d-flex justify-content-between" href="criar-conta.jsp">Crie sua conta!</a>					
 							<a class="d-flex justify-content-between" href="#">Esqueci minha senha!</a>	
 						</div>
 					</form>

@@ -20,6 +20,12 @@ public class Estado {
 		this.UF = UF;
 		this.nomeEstado = nomeEstado;
 	}
+	
+	public Estado(int id, String estado) {
+		super();
+		this.id = id;
+		this.nomeEstado = estado;
+	}
 
 	public int getId() {
 		return id;
