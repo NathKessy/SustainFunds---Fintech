@@ -8,7 +8,9 @@
 </head>
 <body>
 	
-	${erro }
+	Identificado o seguinte erro: 
+	
+	<p>${erro }</p>
 	
 </body>
 </html>

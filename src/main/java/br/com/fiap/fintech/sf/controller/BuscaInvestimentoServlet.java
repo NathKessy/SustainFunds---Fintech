@@ -34,6 +34,9 @@ public class BuscaInvestimentoServlet extends HttpServlet {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			request.setAttribute("erro", e.getMessage());
+			request.getRequestDispatcher("erro.jsp").forward(request, response);
 		}
 	}
 

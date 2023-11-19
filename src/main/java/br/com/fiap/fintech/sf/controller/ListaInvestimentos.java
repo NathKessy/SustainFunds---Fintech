@@ -2,9 +2,6 @@ package br.com.fiap.fintech.sf.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.fiap.fintech.sf.dao.InvestimentosDAO;
-
 import br.com.fiap.fintech.sf.model.Investimento;
 
 @WebServlet("/investimentos")
@@ -49,9 +45,4 @@ public class ListaInvestimentos extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-	
-	public Date asDate(LocalDate localDate) {
-	    return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-	 }
-
 }
