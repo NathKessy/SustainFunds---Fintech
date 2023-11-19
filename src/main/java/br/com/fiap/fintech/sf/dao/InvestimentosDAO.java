@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import br.com.fiap.fintech.sf.model.ContaEmpresa;
 import br.com.fiap.fintech.sf.model.Investimento;
@@ -88,15 +89,10 @@ public class InvestimentosDAO {
 				
 				ContaEmpresa contaEmpresa = contaEmpresaDAO.getById(idEmpresa);
 
-				@SuppressWarnings("deprecation")
-				LocalDate dateInicio = LocalDate.of(dataInicio.getYear(), dataInicio.getMonth(), dataInicio.getDay());
+				LocalDate dateInicio = convertToEntityAttribute(dataInicio);
+				LocalDate dateRegaste = convertToEntityAttribute(dataRegaste);
+				LocalDate dateRegistro = convertToEntityAttribute(dataRegistro);
 				
-				@SuppressWarnings("deprecation")
-				LocalDate dateRegaste = LocalDate.of(dataRegaste.getYear(), dataRegaste.getMonth(), dataRegaste.getDay());
-				
-				@SuppressWarnings("deprecation")
-				LocalDate dateRegistro = LocalDate.of(dataRegistro.getYear(), dataRegistro.getMonth(), dataRegistro.getDay());
-
 				Investimento investimento = new Investimento(id, contaEmpresa, TipoInvestimentoEnum.valueOf(tipoInvestimento), valorInvestido, dateInicio, 
 						dateRegaste, descricaoInvestimento, StatusEnum.valueOf(status), dateRegistro);
 				lista.add(investimento);
@@ -114,4 +110,71 @@ public class InvestimentosDAO {
 
 		return lista;
 	}
+	
+	public Investimento buscarInvestimentoPorIdNome(Integer idInvestimento, String nome) throws SQLException {
+		Investimento investimentoRetorno = null;
+		PreparedStatement stmt = null;
+		Connection conexao = null;
+		ResultSet rs = null;
+		boolean isPrecisaEnd = false;
+		
+		ContaEmpresaDAO contaEmpresaDAO = new ContaEmpresaDAO();
+		StringBuilder sql = new StringBuilder("select * from t_investimentos where ");
+		
+		if (idInvestimento != 0) {
+			sql.append(" ID_INVESTIMENTOS = " + idInvestimento);
+			isPrecisaEnd = true;
+		}
+	
+		if (nome != "" ) {
+			if (isPrecisaEnd == true) {
+				sql.append(" and ");
+			}
+			sql.append(" DESCRICAO_INVEST = '" + nome + "'");
+		}
+			
+		try {
+			conexao = Conexao.abrirConexao();
+			stmt = conexao.prepareStatement(sql.toString());
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				int id = rs.getInt("ID_INVESTIMENTOS");
+				int idEmpresa = rs.getInt("T_CONTA_EMPRESA_ID_CONTA");
+				String tipoInvestimento = rs.getString("TIPO_INVEST");
+				double valorInvestido = rs.getDouble("VALOR_INVESTIDO");
+				Date dataInicio = rs.getDate("DATA_INICIO");
+				Date dataRegaste = rs.getDate("DATA_RESGATE");
+				String descricaoInvestimento = rs.getString("DESCRICAO_INVEST");
+				String status = rs.getString("STATUS");
+				Date dataRegistro = rs.getDate("DATA_REGISTRO");
+				
+				ContaEmpresa contaEmpresa = contaEmpresaDAO.getById(idEmpresa);
+
+				LocalDate dateInicio = convertToEntityAttribute(dataInicio);
+				LocalDate dateRegaste = convertToEntityAttribute(dataRegaste);
+				LocalDate dateRegistro = convertToEntityAttribute(dataRegistro);
+				
+				Investimento investimento = new Investimento(id, contaEmpresa, TipoInvestimentoEnum.valueOf(tipoInvestimento), valorInvestido, dateInicio, 
+						dateRegaste, descricaoInvestimento, StatusEnum.valueOf(status), dateRegistro);
+				investimentoRetorno = investimento;
+			}
+
+		} catch (SQLException e) {
+			System.err.println("Erro ao listar investimento ao banco de dados!");
+			e.printStackTrace();
+		} finally {
+			rs.close();
+			stmt.close();
+			conexao.close();
+		}
+
+		return investimentoRetorno;
+	}
+	
+	public LocalDate convertToEntityAttribute(Date date) {
+        return Optional.ofNullable(date)
+          .map(Date::toLocalDate)
+          .orElse(null);
+    }
 }
