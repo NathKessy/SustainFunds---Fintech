@@ -14,10 +14,10 @@ import br.com.fiap.fintech.sf.dao.InvestimentosDAO;
 import br.com.fiap.fintech.sf.model.Investimento;
 
 @WebServlet("/investimentos")
-public class ListaInvestimentos extends HttpServlet {
+public class ListaInvestimentosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ListaInvestimentos() {
+	public ListaInvestimentosServlet() {
 		super();
 	}
 
@@ -35,9 +35,9 @@ public class ListaInvestimentos extends HttpServlet {
 			request.getRequestDispatcher("tela-investimentos-teste.jsp").forward(request, response);
 
 		} catch (SQLException e) {
-			response.sendRedirect("error.jsp?erro=Problemas técnicos");
+			response.sendRedirect("erro.jsp?erro=Problemas técnicos");
 		} catch (Exception e) {
-			response.sendRedirect("error.jsp?erro=" + e.getMessage());
+			response.sendRedirect("erro.jsp?erro='Erro desconhecido!'");
 		}
 	}
 
