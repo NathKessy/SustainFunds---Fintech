@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -16,16 +16,15 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/font-awesome.min.css" />
-<link rel="stylesheet" href="css/owl.carousel.min.css" />
 <link rel="stylesheet" href="css/flaticon.css" />
 <link rel="stylesheet" href="css/slicknav.min.css" />
 <link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/login.css" />
 </head>
 <body>
-
 	<header class="header-section">
-		<a href="index.html" class="site-logo"> <img
-			src="img/logo.sustainfunds.png" alt="Logo Banco">
+		<a href="index.html" class="site-logo"> <img src="img/logo.png"
+			alt="Logo Banco">
 		</a>
 		<nav class="header-nav">
 			<ul class="main-menu">
@@ -34,58 +33,35 @@
 				<li><a href="#">Serviços</a>
 					<ul class="sub-menu">
 						<li><a href="about-us.html">Sobre nós</a></li>
+						<li><a href="pesquisa.acoes.html">Minhas ações</a></li>
+						<li><a href="cadastro.acoes.html">Cadastro ações</a></li>
 						<li><a href="loans.html">Empréstimos</a></li>
 						<li><a href="elements.html">Cliente+</a></li>
 					</ul></li>
 				<li><a href="news.html">Novidades</a></li>
 				<li><a href="contact.html">Contato</a></li>
-				<li><a href="login.jsp" class="active">Login</a></li>
+				<li><a href="login.html" class="active">Login</a></li>
 			</ul>
-			<!-- Repensar essa parte do código 
-				<div class="header-right">
-				<a href="#" class="hr-btn"><i class="flaticon-029-telephone-1"></i>Fale com a gente!</a>
-				<div class="hr-btn hr-btn-2">+55 11 5426-95410 </div>
-			</div>-->
 		</nav>
 	</header>
 
-	<section class="hero-section"  style="background-color: #74757b">
+	<div class="hero-section">
+		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-7">
-					<form class="hero-form" action="login" method="post">
-						<div class="hs-text">
-							<h2>Login</h2>
-						</div>
-						<input type="email"	placeholder="E-mail" id="email" name="email" required> <br>
-						<input type="password" placeholder="Senha" id="senha" name="senha" required> <br>
-						<div class="d-flex flex-row bd-highlight">
-							<button class="site-btn d-flex justify-content-center">Logar</button>						
-						</div>
-						<c:if test="${not empty msg }">
-							<br>
-							<div class="alert alert-secondary">${msg }</div>
-						</c:if>
-						<c:if test="${not empty erro }">
-							<br>
-							<div class="alert alert-danger">${erro }</div>
-						</c:if>
-						<div class="d-flex flex-row bd-highlight">
-							<a class="d-flex justify-content-between" href="criar-conta.jsp">Crie sua conta!</a>					
-							<a class="d-flex justify-content-between" href="#">Esqueci minha senha!</a>	
-						</div>
+				<div class="col-lg-6">
+					<form class="login-form" method="post" action="login">
+						<img src="img/logo.png" alt="Your Image">
+						<h2>Login</h2>
+						<input type="email" placeholder="E-mail" name="email" class="form-control">
+						<input type="password" placeholder="Senha" name="senha" class="form-control">
+						<a href="../webapp/criar-conta.html" class="forgot-password">Não
+							tem cadastro? Faça aqui.</a>
+						<button class="site-btn">Entrar</button>
 					</form>
-				</div>
-				<div class="col-md-5">
-					<img src="img/logo.sustainfunds.png" alt="Logo Banco">
 				</div>
 			</div>
 		</div>
-		<div class="hero-slider owl-carousel">
-			<div class="hs-item set-bg" data-setbg="img/hero-slider/3.jpg"></div>
-			<div class="hs-item set-bg" data-setbg="img/hero-slider/2.jpg"></div>
-			<div class="hs-item set-bg" data-setbg="img/hero-slider/1.jpg"></div>
-		</div>
-	</section>
+	</div>
 </body>
 </html>
