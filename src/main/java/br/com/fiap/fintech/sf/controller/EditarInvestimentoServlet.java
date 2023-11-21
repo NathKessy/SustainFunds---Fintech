@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.fiap.fintech.sf.dao.InvestimentosDAO;
+import br.com.fiap.fintech.sf.model.ContaEmpresa;
 import br.com.fiap.fintech.sf.model.Investimento;
 import br.com.fiap.fintech.sf.model.enums.StatusEnum;
 import br.com.fiap.fintech.sf.model.enums.TipoInvestimentoEnum;
@@ -36,38 +37,33 @@ public class EditarInvestimentoServlet extends HttpServlet {
 			e.printStackTrace();
 		} 
 		
-		System.out.println("----> " + investimento.getDescricaoInvestimento());
-		
 		request.setAttribute("investimento", investimento);
 		request.getRequestDispatcher("editar-investimento.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		int id = Integer.parseInt(request.getParameter("id"));
 		TipoInvestimentoEnum tipoInvestimento = TipoInvestimentoEnum.valueOf(request.getParameter("tipoInvestimento"));
 		Double valorInvestido = Double.parseDouble(request.getParameter("valorInvestido"));
 		LocalDate dataInicio = LocalDate.parse(request.getParameter("dataInicio"));
 		LocalDate dataResgate = LocalDate.parse(request.getParameter("dataResgate"));
-		String nome = request.getParameter("descricaoInvestimento");
-		StatusEnum status = StatusEnum.valueOf(request.getParameter("status"));
+		String nome = request.getParameter("nome");
 		LocalDate dataRegistro = LocalDate.parse(request.getParameter("dataRegistro"));
 		
 		System.out.println("INFO: Realizando update no ID: " + id);
+		
+		ContaEmpresa contaEmpresa = new ContaEmpresa(1);
 
-		Investimento investimento = new Investimento(id, null, tipoInvestimento, valorInvestido, dataInicio, dataResgate, nome, status, dataRegistro);
+		Investimento investimento = new Investimento(id, contaEmpresa, tipoInvestimento, valorInvestido, dataInicio, dataResgate, nome, StatusEnum.ACEITO, dataRegistro);
 		InvestimentosDAO investimentosDAO = new InvestimentosDAO();
 		
 		try {
 			investimentosDAO.updateInvestimento(investimento);
 		} catch (SQLException erro) {
 			erro.printStackTrace();
-			response.sendRedirect("erro.jsp?erro=erro ao realizar o uptade do usuário");
+			response.sendRedirect("erro.jsp");
 		} 
-		response.sendRedirect("erro.jsp?erro=Funcionou!!");
-		//Validar direcionamento da pagina. 
-		
+		response.sendRedirect("investimentos");
 	}
-
 }

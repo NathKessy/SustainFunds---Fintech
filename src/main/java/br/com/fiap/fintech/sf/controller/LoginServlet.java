@@ -22,16 +22,7 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, IllegalStateException {
-		
-		HttpSession session = request.getSession();
-		
-//		session.invalidate(); Para matar a sessão 
-		
-		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-		if (usuario != null) {
-			request.getRequestDispatcher("home").forward(request, response);
-		}
+			throws ServletException, IOException, IllegalStateException {	
 		
 		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
@@ -51,12 +42,12 @@ public class LoginServlet extends HttpServlet {
 		try {
 			usuario = usuarioDAO.validarUsuario(email, senha);
 		} catch (SQLException e) {
-			response.sendRedirect("error.jsp?erro=Problemas técnicos");
+			response.sendRedirect("erro.jsp");
 		}
 
 		if (usuario != null) {
 			session.setAttribute("usuarioLogado", usuario);
-			request.getRequestDispatcher("home").forward(request, response);
+			request.getRequestDispatcher("investimentos").forward(request, response);
 		} else {
 			request.setAttribute("erro", "Usuário não identificado no banco de dados!");
 			request.getRequestDispatcher("login.jsp").forward(request, response);

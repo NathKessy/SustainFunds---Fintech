@@ -1,53 +1,51 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="pt-br">
 <head>
-	<title>SustainFunds - Inicio</title>
 	<meta charset="UTF-8">
-	<meta name="description" content="loans HTML Template">
-	<meta name="keywords" content="loans, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SustainFunds</title>
 	<link href="img/favicon.ico" rel="shortcut icon"/>
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="css/font-awesome.min.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="css/owl.carousel.min.css"/>
 	<link rel="stylesheet" href="css/flaticon.css"/>
 	<link rel="stylesheet" href="css/slicknav.min.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
 </head>
 
+
 <body>
-	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
 
 	<header class="header-section">
-		<a href="index.html" class="site-logo"> <img
-			src="img/logo.sustainfunds.png" alt="Logo Banco">
-		</a>
-		<nav class="header-nav">
-			<ul class="main-menu">
-				<li><a href="index.html" class="active">Home</a></li>
-				<li><a href="about-us.html">Sobre nós</a></li>
-				<li><a href="#">Serviços</a>
-					<ul class="sub-menu">
-						<li><a href="about-us.html">Sobre nós</a></li>
-						<li><a href="loans.html">Empréstimos</a></li>
-						<li><a href="elements.html">Cliente+</a></li>
-					</ul></li>
-				<li><a href="news.html">Novidades</a></li>
-				<li><a href="contact.html">Contato</a></li>
-				<li><a href="login">Login</a></li>
-			</ul>
-			<!-- Repensar essa parte do código 
-				<div class="header-right">
-				<a href="#" class="hr-btn"><i class="flaticon-029-telephone-1"></i>Fale com a gente!</a>
-				<div class="hr-btn hr-btn-2">+55 11 5426-95410 </div>
-			</div>-->
-		</nav>
-	</header>
-
+        <a href="index.html" class="site-logo"> 
+            <img src="img/logo.png" alt="Logo Banco">
+        </a>
+        <nav class="header-nav">
+            <ul class="main-menu">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Sobre nós</a></li>
+                <li><a href="#">Serviços</a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Sobre nós</a></li>
+                        <li><a href="investimentos">Minhas ações</a></li>
+                        <li><a href="criar-fundo">Cadastro ações</a></li>
+                        <li><a href="#">Empréstimos</a></li>
+                        <li><a href="#">Cliente+</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Novidades</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="login">Login</a></li>
+            </ul>
+        </nav>
+    </header>  
 
 	<section class="hero-section">
 		<div class="container">
@@ -61,23 +59,23 @@
 				</div>
 				<div class="col-lg-6">
 					<form class="hero-form">
+						<h2 style=>Cadastre-se</h2> 
+						<p>Preencha o formulário para receber as nossas oportunidades e crescer o seu negócio.</p>
 						<input type="text" placeholder="Nome">
 						<input type="text" placeholder="E-mail">
 						<input type="text" placeholder="Telefone">
-						<p>Preencha o formulário para obter novas informações sobre nossos serviços e planos. </p>
 						<button class="site-btn">Enviar</button>
 					</form>
 				</div>
 			</div>
 		</div>
+
 		<div class="hero-slider owl-carousel">
 			<div class="hs-item set-bg" data-setbg="img/hero-slider/3.jpg"></div>
 			<div class="hs-item set-bg" data-setbg="img/hero-slider/2.jpg"></div>
 			<div class="hs-item set-bg" data-setbg="img/hero-slider/1.jpg"></div>
 		</div>
 	</section>
-
-
 
 	<section class="why-section spad">
 		<div class="container">
@@ -124,7 +122,7 @@
 	</section>
 
 
-	<!-- CTA Section end -->
+
 	<section class="cta-section set-bg" data-setbg="img/cta-bg.jpg">
 		<div class="container">
 			<h2>Já faz parte do clube <strong>SF2Go</strong>?</h2>
@@ -132,8 +130,6 @@
 			<a href="#" class="site-btn sb-dark sb-big">Leia mais</a>
 		</div>
 	</section>
-
-
 
 	<section class="help-section spad">
 		<div class="container">
@@ -210,9 +206,6 @@
 
 	<footer class="footer-section">
 		<div class="container">
-			<a href="index.html" class="footer-logo">
-				<img src="img/logo.sustainfunds.png" alt="">
-			</a>
 			<div class="row">
 				<div class="col-lg-3 col-sm-6">
 					<div class="footer-widget">
@@ -237,12 +230,13 @@
 					</div>
 				</div>
 				<div class="col-lg-3 col-sm-6">
-					<div class="footer-widget">
-						<h2>Legal</h2>
+					<div class="footer-widget new-column">
+						<h2>Sustentabilidade</h2>
 						<ul>
-							<li><a href="#">Politica de privacidade</a></li>
-							<li><a href="#">Princípios SustainFunds</a></li>
-							<li><a href="#">Código de ética</a></li>
+							<li><a href="#">Finanças Verdes</a></li>
+							<li><a href="#">Impacto Social</a></li>
+							<li><a href="#">Projetos Sustentáveis</a></li>
+							<li><a href="#">Eficiência Energética</a></li>
 						</ul>
 					</div>
 				</div>
@@ -257,12 +251,11 @@
 					</div>
 				</div>
 			</div>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem por incididunt ut labore et dolore mag na aliqua.  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti. Ut gravida mattis magna, non varius lorem sodales nec. In libero orci, ornare non nisl.</p>
-			<div class="copyright"> Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="fa fa-heart-o"></i> </div> 
+			<div class="copyright"> Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="fa fa-heart-o"></i>
+			</div> 
 		</div>
 	</footer>
 
-	
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.slicknav.min.js"></script>

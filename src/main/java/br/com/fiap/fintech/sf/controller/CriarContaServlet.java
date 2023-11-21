@@ -27,13 +27,7 @@ public class CriarContaServlet extends HttpServlet {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Conta criada com sucesso! ").append(request.getContextPath());
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//doGet(request, response);
-		
 		try {
 			
 			String razaoSocial = request.getParameter("razaoSocial");
@@ -81,7 +75,7 @@ public class CriarContaServlet extends HttpServlet {
 			request.setAttribute("erro", "Ocorreu um erro inesperado, favor valide com o suporte!");
 		}
 		
-		request.getRequestDispatcher("login.jsp").forward(request, response);
+		request.getRequestDispatcher("login").forward(request, response);
 		
 	}
 	

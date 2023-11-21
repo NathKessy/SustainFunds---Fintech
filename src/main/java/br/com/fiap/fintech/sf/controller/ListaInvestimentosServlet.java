@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.fiap.fintech.sf.dao.InvestimentosDAO;
 import br.com.fiap.fintech.sf.model.Investimento;
+import br.com.fiap.fintech.sf.model.Usuario;
 
 @WebServlet("/investimentos")
 public class ListaInvestimentosServlet extends HttpServlet {
@@ -25,19 +27,24 @@ public class ListaInvestimentosServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 
-//		ValidateLogin.validarLogin(request);
+			HttpSession session = request.getSession();
+			Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+			if (usuario == null) {
+				request.setAttribute("erro", "Usuário não autenticado!!");
+				request.getRequestDispatcher("login").forward(request, response);
+			}
 
 			InvestimentosDAO investimentosDAO = new InvestimentosDAO();
 			List<Investimento> investimento;
 
 			investimento = investimentosDAO.getAll();
 			request.setAttribute("investimentoLista", investimento);
-			request.getRequestDispatcher("tela-investimentos-teste.jsp").forward(request, response);
+			request.getRequestDispatcher("pesquisa-investimentos.jsp").forward(request, response);
 
 		} catch (SQLException e) {
-			response.sendRedirect("erro.jsp?erro=Problemas técnicos");
+			request.getRequestDispatcher("erro.jsp");
 		} catch (Exception e) {
-			response.sendRedirect("erro.jsp?erro='Erro desconhecido!'");
+			request.getRequestDispatcher("erro.jsp");
 		}
 	}
 

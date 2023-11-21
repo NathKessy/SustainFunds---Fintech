@@ -21,7 +21,7 @@ public class BuscaInvestimentoServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("investimentos").forward(request, response);
+//		request.getRequestDispatcher("investimentos").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,7 +35,6 @@ public class BuscaInvestimentoServlet extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NumberFormatException e) {
-			request.setAttribute("erro", e.getMessage());
 			request.getRequestDispatcher("erro.jsp").forward(request, response);
 		}
 	}
